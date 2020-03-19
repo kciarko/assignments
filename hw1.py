@@ -28,8 +28,14 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
     :return: Number of cases on a given date as an integer
     """
     
-    # Your code goes here (remove pass)
-    pass
+def poland_cases_by_date(day: int, month: int, year: int = 2020):
+	url = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+	df = pd.read_csv(url, error_bad_lines=False)
+	result = df.loc[df["Country/Region"]=="Poland"][d.strftime('%m/%d/%y').lstrip("0").replace(" 0", " ")].values[0]
+	return result
+
+print(d.strftime('%m/%d/%y'))
+print("przypadki: ", poland_cases_by_date(d.strftime('%d'),d.strftime('%m')))
 
 
 def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
